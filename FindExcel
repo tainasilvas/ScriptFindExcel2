@@ -1,0 +1,44 @@
+import requests
+import pandas as pd
+import datetime, re,time
+from datetime import date
+import numpy as np
+import json,unidecode
+import matplotlib.pyplot as plt
+from pyhive import presto,trino
+import pandas as pd
+import getpass
+import random
+
+pd.set_option('display.max_columns', None)
+
+df_atendimentos = pd.read_excel('atendimentos.xlsx')
+df_atendentes = pd.read_excel('ids.xlsx')
+
+id= 0
+qtd_id= len(df_id)-1
+Geral = pd.DataFrame()
+
+while id<= qtd_id:
+
+monitorado = df_atendentes['Ids'][id]
+
+df_monitorado = df_atendimentos.loc[(df_atendimentos['id'] == monitorado)]
+
+df_monitorado.reset_index(inplace=True)
+
+x = random.randint(0,len(df_monitorado))
+
+filtered_df = df_monitorado[(df_monitorado.index == x)]
+
+Geral = Geral.append(filtered_df)
+
+monitoria = Geral.filter(items=['coluna1', 'coluna2'])
+
+id= id+1
+
+print('\\n')
+
+print(monitoria)
+
+Geral.to_excel('monitoria'+'.xlsx')
